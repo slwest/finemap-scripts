@@ -12,14 +12,17 @@ The use of alternative reference panels for the r correlation matrix presents a 
 In our analysis, the scripts create_r2_matrix.py and run_create_r2.sh were used to create the correlation matrix for the full IBD dataset.
  
 **The Z-score file**
+
 The is a linear file with one row per variant and two columns: snp id and directional Z-score. 
 
-**The priors file** 
+**The priors file**
+
 Create a region.k file for each region containing one line with the prior probabilities for the region having 1, 2, 3, n signals. The number of priors dictates the maximum number of causal variants (independent signals) considered by FINEMAP.
 We calculated the priors for the number of causal variants to reflect the proportion of regions with one, two and three independent signals (or causal variants) in the IBD regions included in our analysis. For example, for a region where we will consider a maximum of 3 signals the priors might be:
 0.816 0.15 0.033
 
 **make_inputmaster_c3.sh**
+
 This script reates a parameter file to tell FINEMAP where the files are and what they are called for each input and output files. 
  
 **Commands to run finemap across multiple regions using a parameter file (--in-files option)**
