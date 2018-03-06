@@ -13,7 +13,15 @@ In our analysis, the scripts create_r2_matrix.py and run_create_r2.sh were used 
  
 **The Z-score file**
 
-The is a linear file with one row per variant and two columns: snp id and directional Z-score. 
+The is a linear file with no header and one row per variant and two columns: snp id and directional Z-score. 
+
+```
+$ head HD71_1.z
+rs791336 2.37497791971
+rs791337 2.32597283332
+rs811008 2.13098958761
+rs791338 2.11735181982
+```
 
 **The priors file**
 
@@ -23,7 +31,7 @@ We calculated the priors for the number of causal variants to reflect the propor
 
 **make_inputmaster_c3.sh**
 
-This script reates a parameter file to tell FINEMAP where the files are and what they are called for each input and output files. 
+This script creates a parameter file to tell FINEMAP where the files are and what they are called for each input and output files. 
  
 **Commands to run finemap across multiple regions using a parameter file (--in-files option)**
 Can be run over multiple directories using a shell wrapper as in run_finemap_actual_67k_master.sh to run different parameters in the same script. 
