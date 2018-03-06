@@ -1,5 +1,5 @@
 # finemap-scripts
-Scripts used for the formatting of files and running of FINEMAP and downstream analysis
+Scripts used for the formatting of files in order to run FINEMAP to calculate causal variant probabilities and downstream analyses
 
 # Running FINEMAP
 FINEMAP requires three input files for each associated region, a pairwise variant correlation matrix (Pearson’s r), a file giving the z-score for each variant and a file containing priors for the number of causal variants in the region.
@@ -27,11 +27,17 @@ rs791338 2.11735181982
 
 Create a region.k file for each region containing one line with the prior probabilities for the region having 1, 2, 3, n signals. The number of priors dictates the maximum number of causal variants (independent signals) considered by FINEMAP.
 We calculated the priors for the number of causal variants to reflect the proportion of regions with one, two and three independent signals (or causal variants) in the IBD regions included in our analysis. For example, for a region where we will consider a maximum of 3 signals the priors might be:
+```
 0.816 0.15 0.033
+```
 
-**make_inputmaster_c3.sh**
-
-This script creates a parameter file to tell FINEMAP where the files are and what they are called for each input and output files. 
+**Create a parameter file containing specifics for the FINEMAP analysis**
+The **make_inputmaster_c3.sh** script, provided here, creates a parameter file to tell FINEMAP where the files are and what they are called for each input and output files. The file can contain details for all the regions that require running FINEMAP to determine likely causal variants. The 'z', 'ld' and 'k' files are the Z-score, pairwise correlation and priors file mentioned above, respectively. The 'snp', 'config' and 'log' files are all outputs from FINEMAP. The 'n-ind' is the total number of samlples in the dataset.
+```
+z;ld;snp;config;k;log;n-ind
+/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior/HD110_1.z;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior/HD110_1.ld;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior_test/prior1/HD110_1.snp;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior_test/prior1/HD110_1.config;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior_test/prior1/HD110_1.k;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior_test/prior1/HD110_1.log;68428
+/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior/HD150_1.z;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior/HD150_1.ld;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior_test/prior1/HD150_1.snp;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior_test/prior1/HD150_1.config;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior_test/prior1/HD150_1.k;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior_test/prior1/HD150_1.log;68428
+```  
  
 **Commands to run finemap across multiple regions using a parameter file (--in-files option)**
 Can be run over multiple directories using a shell wrapper as in run_finemap_actual_67k_master.sh to run different parameters in the same script. 
