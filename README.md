@@ -10,10 +10,12 @@ The ‘–r square’ option in PLINKv9 was used for the 1KGP and UK10K data whi
 The use of alternative reference panels for the r correlation matrix presents a few issues regarding the matching of variant id’s with the IBD dataset to ensure the order and number of variants included in the analysis remains constant and that variants are not lost due to naming differences. This especially affects insertion/deletions, which can be named using a number of different conventions from rsids to ‘chr:position:I/D’ format. 
 
 In our analysis, the scripts create_r2_matrix.py and run_create_r2.sh were used to create the correlation matrix for the full IBD dataset.
- 
+**See the README_3_correlation.md file for details on how these files were created. 
+
 **The Z-score file**
 
 The is a linear file with no header and one row per variant and two columns: snp id and directional Z-score. 
+The calculation of the Z-scores and the method to ensure that the z-score and correlation information are in the same direction see README_2_alleles.md
 
 ```
 $ head HD71_1.z
@@ -32,7 +34,8 @@ We calculated the priors for the number of causal variants to reflect the propor
 ```
 
 **Create a parameter file containing specifics for the FINEMAP analysis**
-The **make_inputmaster_c3.sh** script, provided here, creates a parameter file to tell FINEMAP where the files are and what they are called for each input and output files. The file can contain details for all the regions that require running FINEMAP to determine likely causal variants. The 'z', 'ld' and 'k' files are the Z-score, pairwise correlation and priors file mentioned above, respectively. The 'snp', 'config' and 'log' files are all outputs from FINEMAP. The 'n-ind' is the total number of samlples in the dataset.
+The **make_inputmaster_c3.sh** script, provided here, creates a parameter file to tell FINEMAP where the files are and what they are called for each input and output files. 
+The file can contain multiple lines with details for each region that requires running FINEMAP to determine likely causal variants. The 'z', 'ld' and 'k' files are the Z-score, pairwise correlation and priors file mentioned above, respectively. The 'snp', 'config' and 'log' files are all outputs from FINEMAP. The 'n-ind' is the total number of samlples in the dataset.
 ```
 z;ld;snp;config;k;log;n-ind
 /IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior/HD110_1.z;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior/HD110_1.ld;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior_test/prior1/HD110_1.snp;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior_test/prior1/HD110_1.config;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior_test/prior1/HD110_1.k;/IBD/FINEMAPv2/actual_Feb16/r_files_67k/c3_altprior_test/prior1/HD110_1.log;68428
