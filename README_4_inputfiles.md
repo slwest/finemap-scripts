@@ -1,5 +1,5 @@
-**These scripts use the output files from README 2 and 3 to create the input files to run FINEMAP: z-score and .k files
-* **get_zscores2.sh. Required the .key file for each region and the snporder list.
+**These scripts use the output files from README 2 and 3 to create the input files to run FINEMAP: z-score and .k files**
+* **get_zscores2.sh. Required the .key file for each region and the snporder list.**
 ```
 #!/bin/sh
 #for i in `cat cred_set_regionnless50_116.list` ;  do
@@ -32,8 +32,8 @@ print IBDsnp, zscoreA2[rsid]
 done
 ```
 
-* **Make priors files for all regions - .k files
-**run_makek.sh - this basically takes the prior probability for the number of independent signals in the region and creates a separate file for each region. If you want to run the analysis allowing up to 3 independent signals, then there will be three priors - one for: 1 signal, 2 signals and 3 signals.
+* **Make priors files for all regions - .k files**
+**run_makek.sh - this basically takes the prior probability for the number of independent signals in the region and creates a separate file for each region. If you want to run the analysis allowing up to 3 independent signals, then there will be three priors - one for: 1 signal, 2 signals and 3 signals.**
 ```
 0.816 0.15 0.033
 ```

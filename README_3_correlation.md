@@ -1,9 +1,11 @@
-**the scripts in this file require that those in README_2 have already been run. 
-**The following scripts use the .key file produced for each region to produce a SNP order file so that the correlation matrix for the 1KGP reference panel and the matrix for the actual IBD association data contain the same SNPs in the same order. This allows us to run and compare the reference panels for the anlaysis.
-** Additional scripts included here are used to create the actual correlation matrices. 
+**the scripts in this file require that those in README_2 have already been run.** 
 
-* **1. Create the plink files in 1KGP dataset containing only the SNPs for the regions - force the allele to A2 from the key file.
-* getLD_plink.sh
+**The following scripts use the .key file produced for each region to produce a SNP order file so that the correlation matrix for the 1KGP reference panel and the matrix for the actual IBD association data contain the same SNPs in the same order. This allows us to run and compare the reference panels for the anlaysis.**
+
+** Additional scripts included here are used to create the actual correlation matrices.** 
+
+* **1. Create the plink files in 1KGP dataset containing only the SNPs for the regions - force the allele to A2 from the key file.**
+* **getLD_plink.sh**
 ```
 #!/bin/sh
 module load hgi/plink/1.90b2f
@@ -24,14 +26,14 @@ plink --bfile ${files} --extract ${snps} --a1-allele ${key} 3 12 --allow-no-sex 
 done
 done
 ```
-**A2 in the key should now match A1 in the plink .bim file as this allele corresponds to the IBD dosage files used to generate the correlation matrix for the actual IBD data.
-* **2. Calculate the pairwise r correlation in each region for 1KGP  
+**A2 in the key should now match A1 in the plink .bim file as this allele corresponds to the IBD dosage files used to generate the correlation matrix for the actual IBD data.**
+* **2. Calculate the pairwise r correlation in each region for 1KGP**  
 This version means that r was calculated from the files that you are using for the SNP order.
 ```
 plink --bfile ${home}/${f}_1KGP_snpsA2 --a1-allele ${key} 3 12 --allow-no-sex --r square --out ${home}/${f}_1KGP_snpsldrA2
 ```
-* **3. Change the field separator of the matrix to space separated - this outputs the region.ld file in the correct format to run FINEMAP.
-**run_diagonal.sh calls diagonal_spacesep.py (provided as a separate file)  
+* **3. Change the field separator of the matrix to space separated - this outputs the region.ld file in the correct format to run FINEMAP.**
+**run_diagonal.sh calls diagonal_spacesep.py (provided as a separate file)**  
 ```
 #create a list of the LD files to change
 ls *.ld | awk '{split($1,part,"."); print part[1]}' > file.list
@@ -51,8 +53,8 @@ done
 deactivate
 ```
 
-* **4. Prepare files to create the correlation r files for the actual IBD dataset
-**create the SNP order list. Requires the .key file for the region and the plink .bim file from 1KGP created in 2.
+* **4. Prepare files to create the correlation r files for the actual IBD dataset**
+**create the SNP order list. Requires the .key file for the region and the plink .bim file from 1KGP created in 2.**
 ```
 #!/bin/sh
 #this script returns the SNPs in the same order as they are in the plink bim files in the 1KGP directory
@@ -81,8 +83,8 @@ print IBDsnp[snp]
 done
 ```
 
-* **5. Create the correlation files from the actual IBD data dosage files in the order of the snporder list in 4.
-**run_create_r2.sh, which calls create_r2_matrix.py (provided as separate file)
+* **5. Create the correlation files from the actual IBD data dosage files in the order of the snporder list in 4.**
+**run_create_r2.sh, which calls create_r2_matrix.py (provided as separate file)**
 The output file is in the correct format to run as input for FINEMAP
 ```
 export PATH=/software/python-2.7.8/bin:$PATH
