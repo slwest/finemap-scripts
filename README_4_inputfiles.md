@@ -65,6 +65,6 @@ awk '{print $1}' ${file} > ${workdir}/${f}/c1_new/HD${i}.k
 done
    done
 ```
-* ** Create the files to run FINEMAP- make_inputmaster.sh**
-This has been uploaded as a separate file. The output is a file containing the parameters and file locations of all the input files for all regions being run. This saves you having to place all the files for a specific run in the same directory and duplicating files.
-You should now have all the files to run FINEMAP. 
+* **Create the files to run FINEMAP- make_inputmaster.sh**
+**This has been uploaded as a separate file. The output is a file containing the parameters and file locations of all the input files for all regions being run. This saves you having to place all the files for a specific run in the same directory and duplicating files.
+You should now have all the files to run FINEMAP.** 
