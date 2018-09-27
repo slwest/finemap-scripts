@@ -1,10 +1,11 @@
 # finemap-scripts
 Scripts used for the formatting of files in order to run FINEMAP to calculate causal variant probabilities and downstream analyses
+The scripts and README files shown here detail the creation of files required to run FINEMAP for multiple regions of genetic association.
 
 # Running FINEMAP
 FINEMAP requires three input files for each associated region, a pairwise variant correlation matrix (Pearson’s r), a file giving the z-score for each variant and a file containing priors for the number of causal variants in the region.
 
-**The correlation (r) matrix**  
+**The correlation (r) matrix (README_3_correlation.md)**  
 Correlation matrices for the full IBD dataset were generated using the ‘corrcoeff’ function in the numPy package (python-2.7.8), which outputs a square matrix of r values from allelic dosages of the alternate allele in the IBD data to match the allele used to calculate the Z-score for the association. The order of the variants in this file is kept the same as that of the z-score file. The allele used to calculate the r correlation matrix must be the same as the allele used to calculate the Z-score. 
 The ‘–r square’ option in PLINKv9 was used for the 1KGP and UK10K data while forcing the correct effect allele to be used for the correlation calculation.
 The use of alternative reference panels for the r correlation matrix presents a few issues regarding the matching of variant id’s with the IBD dataset to ensure the order and number of variants included in the analysis remains constant and that variants are not lost due to naming differences. This especially affects insertion/deletions, which can be named using a number of different conventions from rsids to ‘chr:position:I/D’ format. 
@@ -12,7 +13,7 @@ The use of alternative reference panels for the r correlation matrix presents a 
 In our analysis, the scripts create_r2_matrix.py and run_create_r2.sh were used to create the correlation matrix for the full IBD dataset.
 **See the README_3_correlation.md file for details on how these files were created. 
 
-**The Z-score file**
+**The Z-score file (README_4_inputfiles.md)**
 
 The is a linear file with no header and one row per variant and two columns: snp id and directional Z-score. 
 The calculation of the Z-scores and the method to ensure that the z-score and correlation information are in the same direction see README_2_alleles.md
@@ -33,7 +34,7 @@ We calculated the priors for the number of causal variants to reflect the propor
 0.816 0.15 0.033
 ```
 
-**Create a parameter file containing specifics for the FINEMAP analysis**
+**Create a parameter file containing specifics for the FINEMAP analysis **
 The **make_inputmaster_c3.sh** script, provided here, creates a parameter file to tell FINEMAP where the files are and what they are called for each input and output files. 
 The file can contain multiple lines with details for each region that requires running FINEMAP to determine likely causal variants. The 'z', 'ld' and 'k' files are the Z-score, pairwise correlation and priors file mentioned above, respectively. The 'snp', 'config' and 'log' files are all outputs from FINEMAP. The 'n-ind' is the total number of samlples in the dataset.
 ```
