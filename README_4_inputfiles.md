@@ -1,5 +1,5 @@
 **These scripts use the output files from README 2 and 3 to create the input files to run FINEMAP: z-score and .k files**
-* **get_zscores2.sh. Required the .key file for each region and the snporder list.**
+* **get_zscores2.sh. Requires the .key file for each region and the snporder list.**
 ```
 #!/bin/sh
 #for i in `cat cred_set_regionnless50_116.list` ;  do
@@ -65,6 +65,6 @@ awk '{print $1}' ${file} > ${workdir}/${f}/c1_new/HD${i}.k
 done
    done
 ```
-* **Create the files to run FINEMAP- make_inputmaster.sh**
-**This has been uploaded as a separate file. The output is a file containing the parameters and file locations of all the input files for all regions being run. This saves you having to place all the files for a specific run in the same directory and duplicating files.
+# **Create the files to run FINEMAP- make_inputmaster.sh**
+* **This has been uploaded as a separate file. The output is a file containing the parameters and file locations of all the input files for all regions being run. This saves you having to place all the files for a specific run in the same directory and duplicating files.
 You should now have all the files to run FINEMAP.** 
