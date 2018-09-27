@@ -1,4 +1,6 @@
-##script to create a parameter file containing all the regions to be run using finemap providing all the locations of the files and the file header: z;ld;snp;config;k;log;n-ind
+##script to create a parameter file containing all the regions (one region per row) to be run using finemap providing all the locations of the files and the file header: z;ld;snp;config;k;log;n-ind
+##the output file is run in finemap using a command like:
+#./finemap --sss --in-files input_master_c3alt_actual_CD  --log --n-configs-top 100 --corr-threshold 0.98
 
 pheno=CD
 number=52541
